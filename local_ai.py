@@ -3,6 +3,10 @@ import json
 import re
 from config import AI_MODEL, AI_TIMEOUT
 
+from functools import lru_cache
+
+# Cache the last 32 calls to avoid repetitive LLM hits for same inputs
+@lru_cache(maxsize=32)
 def run_llm(prompt):
     try:
         # Check if ollama is running first (simple ping check could be added in main, 
@@ -42,61 +46,62 @@ def extract_json(text):
         return None
 
 def ai_interpret(sentence):
+    # Optimized prompt: shorter, clearer instructions, less tokens
     prompt = f"""
-You are an NLP engine for a terminal assistant.
-Extract intent and entities from the user's sentence.
+Act as a terminal assistant NLP engine.
+Extract intent and entities from: "{sentence}"
 
-Allowed intents:
-CREATE_FOLDER, DELETE_FOLDER,
-CREATE_FILE, DELETE_FILE,
-RENAME_FILE, MOVE_FILE, COPY_FILE,
-LIST_FILES, CURRENT_DIR,
-GO_TO, GO_BACK, GO_HOME,
-CAT_FILE, WHOAMI, SYSTEM_INFO
+Intents:
+CREATE_FOLDER, DELETE_FOLDER, CREATE_FILE, DELETE_FILE,
+RENAME_FILE, MOVE_FILE, COPY_FILE, LIST_FILES, CURRENT_DIR,
+GO_TO, GO_BACK, GO_HOME, CAT_FILE, WHOAMI, SYSTEM_INFO,
+CHANGE_DRIVE
 
-Sentence: "{sentence}"
-
-Return ONLY valid JSON with this structure:
+Return JSON ONLY:
 {{
   "intent": "INTENT_NAME",
   "entities": {{
-    "name": "filename or foldername",
-    "source": "source_path",
-    "destination": "dest_path"
+    "name": "filename/foldername",
+    "source": "src",
+    "destination": "dest",
+    "drive": "drive_letter"
   }},
-  "confidence": 0.0 to 1.0 (float)
+  "confidence": 0.0-1.0
 }}
 """
     response = run_llm(prompt)
     data = extract_json(response)
     
     if data:
+        # Ensure entities is always a dict
+        if "entities" in data and data["entities"] is None:
+            data["entities"] = {}
         return data
         
     return {"intent": "UNKNOWN", "entities": {}, "confidence": 0.0}
 
 def ai_suggest_options(sentence):
     prompt = f"""
-A user entered the following ambiguous command: "{sentence}"
-
-Suggest up to 3 possible intended actions.
-Return ONLY a JSON array:
+User input: "{sentence}"
+Suggest 3 terminal actions.
+Return JSON Array ONLY:
 [
   {{
-    "intent": "INTENT_NAME",
-    "entities": {{ "source": "", "destination": "", "name": "" }},
-    "description": "Short human readable description"
+    "intent": "INTENT",
+    "entities": {{ "name": "", "source": "", "destination": "", "drive": "" }},
+    "description": "Short description"
   }}
 ]
 """
     response = run_llm(prompt)
     data = extract_json(response)
-    return data if data else []
+    # Check if data is list, if not try to wrap? No, just return [] on failure
+    return data if isinstance(data, list) else []
 
 def ai_explain(topic):
-    prompt = f"Explain the terminal command '{topic}' simply and briefly."
+    prompt = f"Explain terminal command '{topic}' in 1 short sentence."
     return run_llm(prompt)
 
 def ai_teach(topic):
-    prompt = f"Teach a beginner how to use '{topic}' in the terminal. Provide examples."
+    prompt = f"Show how to use '{topic}' command with 2 concise examples."
     return run_llm(prompt)

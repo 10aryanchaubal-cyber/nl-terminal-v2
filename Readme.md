@@ -1,4 +1,4 @@
-# NL-Terminal v2
+# NL-Terminal v2.1
 ### An AI-Augmented Cross-Platform Command Line Interface
 
 ---
@@ -9,25 +9,24 @@
 
 Instead of replacing the system shell, NL-Terminal operates as a **user-space intelligent layer** on top of the native terminal, preserving correctness, safety, and compatibility while significantly improving usability and learning experience.
 
-The system integrates **offline/local AI**, rule-based command mapping, interactive program passthrough, and user-adaptive modes to create a practical, safe, and extensible terminal environment.
+The system integrates **offline/local AI (Gemma 2B)**, rule-based command mapping, interactive program passthrough, and user-adaptive modes to create a practical, safe, and extensible terminal environment.
 
 ---
 
-## 🎯 New in v2.0
+## 🎯 New in v2.1
 
-### ✨ Clean & Modern UI
-- **Dracula-Themed Interface**: A visually stunning, high-contrast dark theme powered by `rich`.
-- **Persistent Session**: No more flickering screens. The history is preserved just like a real terminal.
-- **Visual Feedback**: Beautiful panels, spinners for AI thinking, and color-coded status messages (Error, Success, Info).
+### ✨ Enhanced Capabilities
+- **Gemma 2B Powered**: Now running on Google's efficient Gemma 2B model for faster, smarter responses.
+- **Drive Switching**: Seamlessly switch drives on Windows (e.g., `change drive to D`, `switch to C:`).
+- **Persistent State**: Directory changes (`cd`, `go to...`) and environment variables now persist correctly across commands.
 
-### 🛡️ Enhanced Stability
-- **Crash Protection**: The terminal now features a global error handler that catches unexpected crashes and logs them to `nl_terminal.log` without closing your session.
-- **Graceful Failures**: Errors are explained in plain English, keeping you in the flow.
+### 🔌 Dynamic Plugin System
+- **Hot-Reloading**: Add or modify python plugins in the `plugins/` folder while the terminal is running. It detects and loads them instantly!
+- **Zero Restart**: No need to restart the shell to test new features.
 
-### 🔌 Extensible Plugin System
-- **Python Plugins**: Extend the terminal's capabilities by writing simple Python scripts in the `plugins/` directory.
-- **Internal Commands**: Plugins can execute system commands or return direct output to the user.
-- **Example Plugin**: Includes a `TimePlugin` (try "what time is it?") out of the box.
+### 🛡️ Robust & Stable
+- **Crash Protection**: Global error handlers catch crashes and log them without killing your session.
+- **Graceful Failures**: Errors are explained in plain English by the AI.
 
 ---
 
@@ -36,30 +35,23 @@ The system integrates **offline/local AI**, rule-based command mapping, interact
 ### ✅ Natural Language Command Execution
 Speak to your terminal in plain English. The system maps your intent to the correct OS-specific command.
 - **File Ops:** `create folder demo`, `delete file notes.txt`
-- **Navigation:** `go to desktop/projects`, `go back`
-- **System:** `check ram`, `kill process chrome`
+- **Navigation:** `go to desktop`, `go back`, `change drive to D`
+- **System:** `check ram`, `kill process chrome`, `what time is it`
 
 ### ✅ Safety Sandbox & Rollback 🛡️
 - **Interactive Safety:** Dangerous commands (delete, kill) require explicit user confirmation.
-- **Rollback / Undo:** Accidentally deleted a file? Just type `undo` or `rollback` to restore it immediately from the secure backup.
-- **Protected Paths:** Sensitive system directories (like `C:\Windows`) are strictly protected from accidental modification.
+- **Rollback / Undo:** Accidentally deleted a file? Just type `undo` or `rollback` to restore it immediately.
+- **Protected Paths:** Sensitive system directories (like `C:\Windows`) are strictly protected.
 
 ### ✅ Full Raw Terminal Support
 - Executes real shell commands directly (`dir`, `git status`, `npm start`).
-- Supports flags, pipes, redirection, and scripts.
-- **Interactive Programs:** Full support for interactive tools like `python`, `vim`, `nano`, `htop`, even on Windows.
-
-### ✅ System Monitoring Utility
-Instant access to hardware and network stats without memorizing cryptic flags:
-- `check ram` / `check cpu` / `check disk`
-- `list processes` / `kill process <name>`
-- `check internet` / `my ip`
+- **Interactive Programs:** Full support for `python`, `vim`, `nano`, `htop`.
 
 ### ✅ AI-Powered Error Intelligence
 When a command fails, the local AI analyzes the error output and:
 - Explains what went wrong in simple terms.
 - Suggests fixes or alternative commands.
-- **Offline Capable:** Works even without an internet connection using local LLMs (Ollama).
+- **Offline Capable:** Works entirely offline using Ollama.
 
 ### ✅ Adaptive Session Modes
 - **Beginner:** Verbose explanations, previews, and guidance.
@@ -67,18 +59,14 @@ When a command fails, the local AI analyzes the error output and:
 - **Safe:** Maximum security checks for every action.
 *Switch modes anytime:* `mode expert`, `mode beginner`.
 
-### ✅ Explain & Learn
-- `explain chmod`: Get a clear explanation of any command.
-- `teach me git`: Learn new tools with interactive AI lessons.
-
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - **Python 3.9+**
-- **[Ollama](https://ollama.ai/)** (Optional, for AI features)
-  - Recommended model: `ollama run phi`
+- **[Ollama](https://ollama.ai/)**
+  - Required model: `ollama pull gemma:2b`
 
 ### ⚡ Quick Start (Windows)
 We provide a one-click launcher for Windows users.
@@ -88,7 +76,6 @@ We provide a one-click launcher for Windows users.
 
 ### 🛠️ Manual Installation
 If you prefer the command line or are on Linux/macOS:
-
 ```bash
 # 1. Install dependencies
 pip install -r requirements.txt
@@ -100,14 +87,12 @@ python main.py
 ---
 
 ## 🧩 Plugin Development
-
 Want to add your own commands? It's easy!
-
 1. Create a `my_plugin.py` in the `plugins/` folder.
 2. Inherit from the `Plugin` class.
-3. Define your intents and execution logic.
+3. The terminal will load it **automatically**!
 
-See `plugins/README.md` and `plugins/time_plugin.py` for examples.
+See `plugins/README.md` for examples.
 
 ---
 
@@ -128,12 +113,14 @@ graph TD
     Executor --> Output[Output Formatter]
     Shell --> Output
     
-    subgraph "AI Layer (Optional)"
+    subgraph "AI Layer"
         Error[Error Intelligence]
         Learn[Tutor Mode]
+        LocalLLM[Ollama (Gemma 2B)]
     end
     
     Output -->|On Error| Error
+    Error --> LocalLLM
 ```
 
 - **Core:** `main.py`, `executor.py`

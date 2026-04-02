@@ -9,69 +9,90 @@ using natural English sentences. It also works as a normal terminal for your usu
 ---
 - Windows: Double-click 'run_terminal.bat'
 - Linux/Mac: Run 'python main.py'
+- Type natural language commands like "create a folder named Work"
+- or standard commands like "dir", "cd", etc.
 
 ---
 2. COMMAND CHEAT SHEET
 ---
 
-[ FILE OPERATIONS ]
+[ FILE & FOLDER OPERATIONS ]
   "create folder <name>"         -> Creates a new folder
+  "delete folder <name>"         -> Deletes a folder
   "create file <name>"           -> Creates a new empty file
   "delete file <name>"           -> Deletes a file (Safely backed up!)
-  "delete folder <name>"         -> Deletes a folder
   "rename file <old> to <new>"   -> Renames a file
   "move file <file> to <folder>" -> Moves a file
   "copy file <file> to <folder>" -> Copies a file
+  "list files" or "ls"           -> Lists files in current directory
 
 [ NAVIGATION ]
-  "show files" or "ls"           -> Lists files in current directory
   "go to <path>"                 -> Changes directory (e.g., "go to Desktop")
   "go back"                      -> Goes up one folder level
+  "go home"                      -> Goes to user home directory
   "where am i"                   -> Shows current path
+  "change drive to D"            -> Switches to D: drive (Windows only)
+  "switch to C:"                 -> Switches to C: drive
 
-[ SYSTEM MONITORING ]
-  "check ram"                    -> Shows graphical memory usage
-  "check cpu"                    -> Shows graphical CPU usage
+[ SYSTEM INFORMATION ]
+  "check ram"                    -> Shows memory usage
+  "check cpu"                    -> Shows CPU load
   "check disk"                   -> Shows storage space
   "my ip"                        -> Shows local IP address
   "check internet"               -> Pings Google to check connection
+  "system info"                  -> Shows detailed OS info
+  "what time is it"              -> Shows current time
+  "what is the date"             -> Shows current date
 
 [ APP MANAGEMENT ]
   "list processes"               -> Shows running applications
   "kill process <name>"          -> Force closes an application (e.g., "kill process notepad")
 
-[ AI & HELP ]
-  "explain <command>"            -> AI explains what a command does (e.g., "explain ipconfig")
-  "teach me <topic>"             -> AI gives a mini-lesson (e.g., "teach me about ssh")
+[ MAINTENANCE ]
+  "clear screen"                 -> Clears the terminal window
+  "upgrade pip"                  -> Upgrades Python package manager
+  "update <package>"             -> Updates a specific Python package
+  "show history"                 -> Shows recent commands
 
 ---
-3. KEY FEATURES EXPLAINED
+3. KEY FEATURES
 ---
 
-(A) ROLLBACK & UNDO
+(A) DYNAMIC PLUGINS (NEW!)
+    You can extend the terminal's functionality by adding Python scripts to the 'plugins' folder.
+    - Simply drop a `.py` file into the `plugins/` directory.
+    - The terminal will automatically load it WITHOUT restarting.
+    - Example: Create `plugins/hello.py` to add a "hello" command.
+
+(B) ROLLBACK & UNDO
     If you delete a file using NL-Terminal ("delete file..."), it is NOT lost forever.
     We create a temporary backup.
-    
     > Command: "undo" or "rollback"
     > Action: Restores the last file you deleted.
 
-(B) SAFETY SANDBOX
-    - The terminal prevents you from accidentally deleting system files (like C:\Windows).
-    - For dangerous actions, it asks: "Are you sure? [y/N]"
+(C) SAFETY SANDBOX
+    - Prevents accidental deletion of system files (like C:\Windows).
+    - Asks for confirmation on dangerous actions ("Are you sure? [y/N]").
 
-(C) MODES
+(D) MODES
     Switch modes by typing "mode <name>":
-    
     - "mode beginner" : Helpful tips, previews commands before running.
     - "mode expert"   : Faster, fewer confirmations (commands run immediately if safe).
     - "mode safe"     : Paranoid mode. Asks confirmation for almost everything.
 
 ---
-4. TROUBLESHOOTING
+4. AI ASSISTANCE
+---
+  "explain <command>"            -> AI explains what a command does (e.g., "explain ipconfig")
+  "teach me <topic>"             -> AI gives a mini-lesson (e.g., "teach me about ssh")
+  "suggest <query>"              -> AI suggests possible commands for a vague query.
+
+---
+5. TROUBLESHOOTING
 ---
 - If AI features aren't working:
   Make sure 'Ollama' is installed and running in the background.
-  Run 'ollama run phi' in a separate terminal.
+  Run 'ollama run gemma:2b' in a separate terminal.
 
 - If a command isn't understood:
   Try rephrasing it simply.
@@ -79,3 +100,195 @@ using natural English sentences. It also works as a normal terminal for your usu
 
 - To exit:
   Type "exit" or "quit".
+
+---
+6. PROJECT PRESENTATION PROMPT
+---
+
+Use the following prompt when you want to generate a PPT, report outline, or viva content for this project:
+
+"Create a professional academic presentation for our project titled 'NL-Terminal v2.1: An AI-Augmented Cross-Platform Command Line Interface'.
+
+This project is a Python-based intelligent terminal that allows users to operate the command line using natural English sentences while still supporting normal raw shell commands. The system works as a user-space intelligent layer above the native terminal instead of replacing the system shell. It supports Windows and Linux style command mapping, direct command execution, interactive terminal programs, safety confirmation, file rollback, local AI assistance, and hot-reloadable plugins.
+
+Project context:
+- Purpose: Reduce the learning curve of traditional command-line interfaces by allowing beginners to use natural language without losing the power of real terminal commands.
+- Domain: Human-computer interaction, command-line usability, AI-assisted systems, operating systems.
+- Core idea: Convert natural-language input into valid OS-specific shell commands using rule-based intent detection, entity extraction, command mapping, and optional local LLM support.
+- Programming language: Python
+- Main technologies: Python 3, Rich library for terminal UI, Ollama, Gemma 2B local model
+- Platform support: Windows and Linux
+- Key modules:
+  - main.py: central control flow and command routing
+  - command_detector.py: distinguishes direct shell commands from natural-language input
+  - intent_parser.py: detects intent and extracts entities
+  - command_mapper.py: maps intents to OS-specific commands
+  - safety.py: prevents dangerous actions and asks for confirmation
+  - backup_manager.py: supports undo/rollback for deleted files
+  - executor.py and pty_executor.py: execute normal and interactive commands
+  - local_ai.py: local AI features using Ollama + Gemma 2B
+  - error_intelligence.py: explains command failures and suggests fixes
+  - plugin_loader.py and plugins/: dynamic hot-reload plugin architecture
+  - ui.py and output_formatter.py: terminal interface and formatted output
+- Major features:
+  - Natural language commands like 'create folder demo', 'where am i', 'check ram usage'
+  - Normal shell commands like 'git status', 'python --version', 'dir'
+  - Safety sandbox for risky operations
+  - Undo/rollback for deleted files
+  - AI explain, teach, and suggestion features
+  - AI-powered error explanation
+  - Beginner, expert, and safe modes
+  - Dynamic plugin system with no restart required
+  - Persistent directory/session behavior
+
+Make the presentation clear, technical, and suitable for college project evaluation. Keep the language simple but professional. Add examples from our project wherever relevant.
+
+Prepare slides using the following structure:
+
+1. Title Slide
+- Project Title: NL-Terminal v2.1: An AI-Augmented Cross-Platform Command Line Interface
+- Course / Subject
+- Student Name(s), Roll No(s)
+- Guide / Mentor Name
+- Department of Information Technology
+- College Name
+
+2. Introduction
+- Introduce the importance of command-line interfaces in development and system administration
+- Explain that traditional terminals are powerful but difficult for beginners because users must memorize commands and syntax
+- Mention the motivation for building a natural-language-driven terminal that is safer, easier to learn, and still practical for real use
+
+3. Problem Statement
+- Traditional command-line systems such as CMD, PowerShell, and Bash are not beginner-friendly
+- Users often forget syntax, flags, and OS-specific commands
+- Existing systems generally do not combine natural language input, raw terminal support, rollback, safety checks, and offline AI assistance in one lightweight interface
+- State the real-world need for an accessible but technically correct terminal assistant
+
+4. Objectives
+- Allow users to execute terminal operations using natural language
+- Preserve support for direct shell commands
+- Provide cross-platform command mapping
+- Improve safety during destructive operations
+- Provide rollback for deleted files
+- Offer AI-based explanation and learning support
+- Make the system extensible through plugins
+
+5. Literature Review / Existing System
+- Discuss traditional terminals: CMD, PowerShell, Bash
+- Mention command assistants and AI-based tools in general
+- Explain limitations of existing approaches:
+  - require memorization of commands
+  - limited beginner guidance
+  - lack of rollback support
+  - unsafe execution in some cases
+  - cloud dependency in many AI tools
+  - weak support for hybrid natural language + raw command workflows
+
+6. Proposed System
+- Explain that NL-Terminal acts as an intelligent layer over the existing terminal
+- Describe flow:
+  - user enters input
+  - system detects whether it is natural language or a direct command
+  - if natural language, it detects intent and entities
+  - maps the request to a Windows/Linux command
+  - checks safety
+  - executes the command
+  - formats output
+  - if an error occurs, AI explains the issue
+- Mention advantages:
+  - easier learning curve
+  - safer execution
+  - rollback support
+  - offline/local AI
+  - plugin extensibility
+  - support for both beginners and advanced users
+- Include a system architecture diagram based on:
+  User Input -> Input Type Detection -> Intent Parser / Direct Shell -> Command Mapper -> Safety Layer -> Executor -> Output Formatter -> Error Intelligence / Local AI
+
+7. Methodology / Implementation
+- Mention development approach as modular Python implementation
+- Explain technologies used: Python, Rich, Ollama, Gemma 2B
+- Describe implementation modules:
+  - input classification
+  - intent detection
+  - entity extraction
+  - OS-specific command generation
+  - safety validation
+  - backup and restore
+  - execution engine
+  - plugin hot loading
+  - AI help and AI error analysis
+- Add workflow/flowchart explanation for complete execution lifecycle
+
+8. Algorithm / Model Used
+- Explain rule-based intent detection using phrase matching from intents.json
+- Explain regex-based entity extraction for file names, folders, drives, processes, and package names
+- Explain direct command detection using PATH lookup, built-in command lists, flags, shell operator checks, and natural-language phrase overrides
+- Explain OS-specific command mapping using intent-to-command rules
+- Explain AI layer:
+  - local LLM accessed through Ollama
+  - Gemma 2B used for explanation, teaching, suggestions, and deeper error analysis
+  - cached AI calls for repeated prompts
+- Explain why these were chosen:
+  - lightweight
+  - explainable
+  - faster than a fully generative pipeline
+  - works offline
+  - suitable for academic prototype and real use
+
+9. Results & Discussion
+- Show screenshots of the running terminal UI
+- Include examples such as:
+  - natural language command execution
+  - direct shell command execution
+  - rollback after file deletion
+  - AI explanation of commands
+  - plugin hot reloading
+- Explain outputs and user experience
+- Discuss performance qualitatively:
+  - fast rule-based actions
+  - optional AI response when needed
+  - improved usability for beginners
+
+10. Testing & Validation
+- Mention unit/verification testing of command detection logic using test_command_detector.py
+- Mention manual testing of:
+  - file and folder operations
+  - navigation commands
+  - drive switching
+  - safety confirmation
+  - rollback feature
+  - AI help commands
+  - direct command passthrough
+  - plugin loading and reloading
+- Add sample test cases with expected input and output
+- State that the project was validated for correctness, usability, and safety behavior
+
+11. Conclusion
+- Summarize that the project successfully combines natural language interaction with real terminal power
+- Mention that the main objectives of usability, safety, extensibility, and offline AI assistance were achieved
+- State that NL-Terminal is both an academic demonstration and a practically useful prototype
+
+12. Future Scope
+- Better NLP and more advanced intent understanding
+- Support for more operating systems and shell environments
+- More built-in commands and plugin APIs
+- Voice-command support
+- Multilingual natural language support
+- Better analytics, command history intelligence, and personalization
+- Stronger automated testing and security hardening
+- GUI or web dashboard integration
+
+13. References
+- Python documentation
+- Rich library documentation
+- Ollama documentation
+- Gemma model documentation / related AI references
+- Command-line and operating system references for Windows and Linux
+- Research papers or articles on natural language interfaces and human-computer interaction
+
+Also generate:
+- short speaker notes for each slide
+- one concise architecture explanation
+- one viva-ready summary of the project
+- a final conclusion in simple academic language."

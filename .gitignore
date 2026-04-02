@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+
+# IDE files
+.idea/
+
+# Runtime logs and local debug output
+logs/
+*.log
+debug_output.txt
+
+# Local exports and generated documents
+output/
+
+# Local backups
+.backups/
+backup/
+
+# Windows shortcuts and shell noise
+*.lnk
+
+# Test and tooling caches
+.pytest_cache/

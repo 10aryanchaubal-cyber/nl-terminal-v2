@@ -2,61 +2,148 @@
   "CREATE_FOLDER": [
     "create folder",
     "make folder",
-    "create directory"
+    "create directory",
+    "make directory",
+    "new folder",
+    "add folder",
+    "create a folder",
+    "make a folder",
+    "make a new folder",
+    "create a new directory",
+    "create folder "
   ],
   "DELETE_FOLDER": [
     "delete folder",
     "remove folder",
-    "delete directory"
+    "delete directory",
+    "remove directory",
+    "destroy folder",
+    "get rid of folder",
+    "erase folder"
   ],
   "CREATE_FILE": [
     "create file",
-    "make file"
+    "make file",
+    "new file",
+    "create a file",
+    "make a file",
+    "touch file",
+    "add file",
+    "make a new file"
   ],
   "ROLLBACK": [
     "rollback",
     "undo",
     "revert",
     "undelete",
-    "go back in time"
+    "go back in time",
+    "undo last action",
+    "restore last deleted",
+    "bring back",
+    "recover"
   ],
   "DELETE_FILE": [
     "delete file",
-    "remove file"
+    "remove file",
+    "erase file",
+    "destroy file",
+    "get rid of file"
   ],
   "RENAME_FILE": [
-    "rename file"
+    "rename file",
+    "change name of file",
+    "rename the file"
   ],
   "MOVE_FILE": [
-    "move file"
+    "move file",
+    "move the file",
+    "relocate file",
+    "transfer file"
   ],
   "COPY_FILE": [
-    "copy file"
+    "copy file",
+    "duplicate file",
+    "copy the file",
+    "make a copy of"
   ],
   "LIST_FILES": [
     "list files",
     "show files",
-    "display files"
+    "display files",
+    "show all files",
+    "list all files",
+    "what files are here",
+    "show me files",
+    "show directory contents",
+    "show folder contents",
+    "list everything",
+    "show everything here",
+    "what's in this folder",
+    "what is in this directory",
+    "show contents"
   ],
   "CURRENT_DIR": [
     "current directory",
     "where am i",
-    "present directory"
+    "whereami",
+    "present directory",
+    "what directory",
+    "which directory",
+    "current path",
+    "show path",
+    "print working directory",
+    "current location",
+    "where is my location",
+    "show current folder"
+  ],
+  "CAT_FILE": [
+    "show file content",
+    "read file",
+    "display file",
+    "view file",
+    "show file",
+    "print file",
+    "what is inside file",
+    "show me the content of",
+    "cat file",
+    "open file content"
   ],
   "GO_TO": [
     "go to",
-    "open"
+    "navigate to",
+    "enter folder",
+    "enter directory",
+    "change to",
+    "go into",
+    "open folder",
+    "open directory",
+    "switch to folder"
   ],
   "GO_BACK": [
-    "go back"
+    "go back",
+    "go up",
+    "back one folder",
+    "parent directory",
+    "go to parent",
+    "up one level",
+    "previous folder",
+    "one folder up",
+    "go one level up"
   ],
   "GO_HOME": [
-    "go home"
+    "go home",
+    "home directory",
+    "take me home",
+    "go to home",
+    "navigate home",
+    "switch to home"
   ],
   "SHOW_HISTORY": [
     "history",
     "show history",
-    "command history"
+    "command history",
+    "previous commands",
+    "past commands"
   ],
   "EXPLAIN": [
     "explain",
@@ -65,75 +152,258 @@
   "LEARN": [
     "teach me",
     "learn",
-    "how to use"
+    "how to use",
+    "how do i"
   ],
   "UPGRADE_PIP": [
     "upgrade pip",
     "update pip"
   ],
   "UPGRADE_PACKAGE": [
-    "upgrade",
-    "update",
-    "install update"
+    "upgrade package",
+    "update package",
+    "install update for"
+  ],
+  "INSTALL_PACKAGE": [
+    "install package",
+    "install library",
+    "install module",
+    "add package",
+    "pip install",
+    "npm install",
+    "install the package"
   ],
   "CHECK_RAM": [
     "check ram",
     "memory usage",
     "how much memory",
-    "ram status"
+    "ram status",
+    "show memory",
+    "display memory",
+    "memory info",
+    "ram info",
+    "how much ram",
+    "used memory",
+    "free memory"
   ],
   "CHECK_CPU": [
     "check cpu",
     "cpu usage",
     "cpu status",
-    "processor usage"
+    "processor usage",
+    "cpu load",
+    "show cpu",
+    "how busy is cpu",
+    "processor status"
   ],
   "CHECK_DISK": [
     "check disk",
     "disk space",
     "storage space",
-    "free space"
+    "free space",
+    "disk usage",
+    "show disk",
+    "how much storage",
+    "drive space",
+    "available space"
   ],
   "CHECK_IP": [
     "what is my ip",
     "my ip address",
     "network info",
-    "show ip"
+    "show ip",
+    "display ip",
+    "ip address",
+    "show network",
+    "network information",
+    "show my ip"
   ],
   "CHECK_INTERNET": [
     "check internet",
     "am i online",
     "ping google",
-    "check connection"
+    "check connection",
+    "internet status",
+    "is internet working",
+    "test connection",
+    "test internet"
   ],
   "LIST_PROCESSES": [
     "list processes",
     "show running apps",
     "task list",
-    "what is running"
+    "what is running",
+    "show processes",
+    "running programs",
+    "show running processes",
+    "active processes",
+    "show tasks"
   ],
   "KILL_PROCESS": [
     "kill process",
     "end task",
     "stop program",
-    "terminate"
+    "terminate",
+    "force close",
+    "stop process",
+    "kill program",
+    "close program",
+    "end program"
   ],
   "CHECK_TIME": [
     "what time is it",
     "current time",
     "show time",
-    "clock"
+    "clock",
+    "display time",
+    "tell me the time"
   ],
   "CHECK_DATE": [
     "what is the date",
     "current date",
     "show date",
-    "today"
+    "today",
+    "what day is it",
+    "display date",
+    "tell me the date",
+    "today's date"
   ],
   "CLEAR_SCREEN": [
     "clear screen",
-    "cls",
     "clean terminal",
-    "clear"
+    "clean screen",
+    "clear the terminal",
+    "wipe screen"
+  ],
+  "CHANGE_DRIVE": [
+    "change drive",
+    "switch drive",
+    "go to drive",
+    "open drive",
+    "switch to drive"
+  ],
+  "SYSTEM_INFO": [
+    "system info",
+    "system information",
+    "show system info",
+    "computer info",
+    "about this computer",
+    "machine info",
+    "pc info",
+    "os info"
+  ],
+  "WHOAMI": [
+    "who am i",
+    "whoami",
+    "my username",
+    "current user",
+    "logged in as"
+  ],
+  "SEARCH_FILES": [
+    "search for file",
+    "find file",
+    "find files",
+    "search files",
+    "look for file",
+    "locate file",
+    "where is file"
+  ],
+  "CHECK_VERSION": [
+    "check version",
+    "what version",
+    "version of",
+    "show version"
+  ],
+  "RUN_SCRIPT": [
+    "run script",
+    "execute script",
+    "run program",
+    "execute program",
+    "run the script",
+    "launch script"
+  ],
+  "OPEN_EDITOR": [
+    "edit file",
+    "open in editor",
+    "open editor",
+    "edit the file"
+  ],
+  "COMPRESS_FILE": [
+    "zip folder",
+    "compress folder",
+    "compress file",
+    "zip file",
+    "archive folder",
+    "create archive",
+    "make zip",
+    "zip files"
+  ],
+  "EXTRACT_FILE": [
+    "unzip file",
+    "extract file",
+    "extract archive",
+    "decompress file",
+    "unzip folder",
+    "extract zip"
+  ],
+  "DOWNLOAD_FILE": [
+    "download file",
+    "download from",
+    "fetch file",
+    "get file from url"
+  ],
+  "SHOW_ENV": [
+    "show environment",
+    "environment variables",
+    "show path variable",
+    "display environment",
+    "what is path",
+    "show env"
+  ],
+  "FIND_TEXT": [
+    "search for text",
+    "find text",
+    "grep for",
+    "search in files",
+    "find string",
+    "search string"
+  ],
+  "SHOW_SIZE": [
+    "file size",
+    "folder size",
+    "how big is",
+    "show size",
+    "directory size",
+    "size of"
+  ],
+  "NETWORK_STATUS": [
+    "network connections",
+    "show connections",
+    "active connections",
+    "who is connected",
+    "open ports",
+    "listening ports"
+  ],
+  "SYSTEM_UPTIME": [
+    "system uptime",
+    "how long has system been running",
+    "uptime",
+    "show uptime"
+  ],
+  "SHUTDOWN": [
+    "shutdown computer",
+    "turn off computer",
+    "power off",
+    "shut down"
+  ],
+  "RESTART": [
+    "restart computer",
+    "reboot computer",
+    "reboot system",
+    "restart system"
+  ],
+  "TEST_DYNAMIC": [
+    "test dynamic",
+    "reload test"
   ]
 }

@@ -2,7 +2,7 @@
 # Configuration for NL-Terminal
 
 # AI Configuration
-AI_MODEL = "phi"  # The Ollama model to use
+AI_MODEL = "gemma:2b"  # The Ollama model to use
 AI_TIMEOUT = 10   # Seconds to wait for AI response
 
 # Confidence Thresholds
